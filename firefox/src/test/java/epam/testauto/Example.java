@@ -32,10 +32,17 @@ public class Example {
         firefox.findElement(By.cssSelector(".profile-photo")).click();
         firefox.findElement(By.id("Login")).sendKeys(sUsername);
         firefox.findElement(By.id("Password")).sendKeys(sPassword + Keys.ENTER);
-
-        Assert.assertTrue(firefox.findElement(By.cssSelector(".logout")).isEnabled());
-        firefox.navigate().to("/tests/page1.htm");
-        Assert.assertEquals(firefox.getTitle(), "Contact Form");
+        
+        try {
+            Assert.assertTrue(firefox.findElement(By.cssSelector(".logout")).isEnabled());
+            firefox.navigate().to("/tests/page1.htm");
+            Assert.assertEquals(firefox.getTitle(), "Contact Form");
+            System.out.println("Succesfully submitted");
+        }
+        catch (AssertionError e) {
+            System.out.println("Login failed, invalid username or password");
+        }
+		
         /*Assert.assertTrue(firefox.findElement(By.id("Name")).isDisplayed());
         Assert.assertTrue(firefox.findElement(By.id("LastName")).isDisplayed());
         Assert.assertTrue(firefox.findElement(By.id("Description")).isDisplayed());*/

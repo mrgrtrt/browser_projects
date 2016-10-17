@@ -34,9 +34,15 @@ public class Example {
         edge.findElement(By.id("Login")).sendKeys(sUsername);
         edge.findElement(By.id("Password")).sendKeys(sPassword + Keys.ENTER);
 
-        Assert.assertTrue(edge.findElement(By.cssSelector(".logout")).isEnabled());
-        edge.navigate().to("https://jdi-framework.github.io/tests/page1.htm");
-        Assert.assertEquals(edge.getTitle(), "Contact Form");
+        try {
+            Assert.assertTrue(edge.findElement(By.cssSelector(".logout")).isEnabled());
+            edge.navigate().to("https://jdi-framework.github.io/tests/page1.htm");
+            Assert.assertEquals(edge.getTitle(), "Contact Form");
+            System.out.println("Successfully submitted");
+        }
+        catch (AssertionError e) {
+            System.out.println("Login failed, invalid username or password");
+        }
     }
 
     @Test(priority = 2)

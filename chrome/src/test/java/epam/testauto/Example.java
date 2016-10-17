@@ -45,9 +45,15 @@ public class Example {
         chrome.findElement(By.id("Login")).sendKeys(sUsername);
         chrome.findElement(By.id("Password")).sendKeys(sPassword + Keys.ENTER);
 
-        Assert.assertTrue(chrome.findElement(By.cssSelector(".logout")).isEnabled());
-        chrome.navigate().to("https://jdi-framework.github.io/tests/page1.htm");
-        Assert.assertEquals(chrome.getTitle(), "Contact Form");
+        try {
+            Assert.assertTrue(chrome.findElement(By.cssSelector(".logout")).isEnabled());
+            chrome.navigate().to("https://jdi-framework.github.io/tests/page1.htm");
+            Assert.assertEquals(chrome.getTitle(), "Contact Form");
+            System.out.println("Successfully submitted");
+        }
+        catch (AssertionError e) {
+            System.out.println("Login failed, invalid username or password");
+        }
     }
 
     @Test(priority = 2)
