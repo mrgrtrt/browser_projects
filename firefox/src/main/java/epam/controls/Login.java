@@ -11,9 +11,6 @@ import org.testng.Assert;
 public class Login {
     private WebDriver driver;
     private By locator;
-    private By usernameLocator = By.id("Login");
-    private By passwordLocator = By.id("Password");
-    private By submitLocator = By.cssSelector("button.btn-login");
 
     public Login(WebDriver driver, String locator) {
         this.driver = driver;
@@ -24,13 +21,13 @@ public class Login {
         driver.findElement(locator).click();
     }
 
-    public void typeData(String sUsername, String sPassword) {
-        driver.findElement(usernameLocator).sendKeys(sUsername);
-        driver.findElement(passwordLocator).sendKeys(sPassword);
+    public void typeData(String usernameLocator, String sUsername, String passwordLocator, String sPassword) {
+        driver.findElement(By.id(usernameLocator)).sendKeys(sUsername);
+        driver.findElement(By.id(passwordLocator)).sendKeys(sPassword);
     }
 
-    public void submit() {
-        driver.findElement(submitLocator).click();
+    public void submit(String submitLocator) {
+        driver.findElement(By.cssSelector(submitLocator)).click();
     }
 
     public void loginCheck(boolean bool) {

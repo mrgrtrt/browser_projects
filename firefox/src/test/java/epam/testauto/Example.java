@@ -48,8 +48,8 @@ public class Example {
 
         Login login = new Login(firefox, ".profile-photo");
         login.clickToStart();
-        login.typeData(sUsername, sPassword);
-        login.submit();
+        login.typeData("Login", sUsername, "Password", sPassword);
+        login.submit("button.btn-login");
         login.loginCheck(bool);
     }
 
