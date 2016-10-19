@@ -4,11 +4,9 @@ package epam.testauto;
  * Created by Rita on 09.10.2016.
  */
 
-import org.openqa.selenium.By;
+import epam.controls.Login;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -29,20 +27,27 @@ public class Example {
     }
 
     @Test(priority = 1, dataProviderClass = Data.class, dataProvider = "login")
-    public void test(String sUsername, String sPassword){
-        edge.findElement(By.cssSelector(".profile-photo")).click();
+    public void test(boolean bool, String sUsername, String sPassword){
+        /*edge.findElement(By.cssSelector(".profile-photo")).click();
         edge.findElement(By.id("Login")).sendKeys(sUsername);
         edge.findElement(By.id("Password")).sendKeys(sPassword + Keys.ENTER);
 
         try {
-            Assert.assertTrue(edge.findElement(By.cssSelector(".logout")).isEnabled());
             edge.navigate().to("https://jdi-framework.github.io/tests/page1.htm");
             Assert.assertEquals(edge.getTitle(), "Contact Form");
-            System.out.println("Successfully submitted");
+            if (bool == "Contact Form".equals(edge.getTitle())) {
+                System.out.println("Successfully submitted");
+            }
         }
         catch (AssertionError e) {
             System.out.println("Login failed, invalid username or password");
-        }
+        }*/
+
+        Login login = new Login(edge, ".profile-photo");
+        login.clickToStart();
+        login.typeData("Login", sUsername, "Password", sPassword);
+        login.submit("button.btn-login");
+        login.loginCheck(bool);
     }
 
     @Test(priority = 2)
