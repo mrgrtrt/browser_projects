@@ -7,6 +7,7 @@
                 <methods>
                     <include name="loadPage"/>
                     <include name="authorization"/>
+					 <include name="workingWPageObject"/>
                     <include name="handleAlert"/>
                 </methods>
             </class>
