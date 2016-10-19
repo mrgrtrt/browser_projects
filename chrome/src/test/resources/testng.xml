@@ -6,7 +6,7 @@
             <class name="epam.testauto.Example" >
                 <methods>
                     <include name="loadPage"/>
-                    <include name="authorization"/>
+                    <include name="loginSubmit"/>
                     <include name="handleAlert"/>
                 </methods>
             </class>

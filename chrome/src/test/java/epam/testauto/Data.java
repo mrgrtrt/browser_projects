@@ -10,11 +10,11 @@ public class Data {
     @DataProvider(name = "login")
     public static Object[][] logData() {
         return new Object[][] {
-                {"", ""},
-                {"epam", ""},
-                {"", "1234"},
-                {"user", "password"},
-                {"epam", "1234"}
+                {false, "", ""},
+                {false, "epam", ""},
+                {false, "", "1234"},
+                {false, "user", "password"},
+                {true, "epam", "1234"}
         };
     }
 

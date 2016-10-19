@@ -3,6 +3,9 @@ package epam.testauto;
 /**
  * Created by Rita on 09.10.2016.
  */
+import epam.controls.Login;
+import org.apache.commons.logging.Log;
+import org.apache.tools.ant.util.LoaderUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -40,20 +43,27 @@ public class Example {
     }
 
     @Test(priority = 1, dataProviderClass = Data.class, dataProvider = "login")
-    public void authorization(String sUsername, String sPassword) {
-        chrome.findElement(By.cssSelector(".profile-photo")).click();
+    public void loginSubmit(boolean bool, String sUsername, String sPassword) {
+        /*chrome.findElement(By.cssSelector(".profile-photo")).click();
         chrome.findElement(By.id("Login")).sendKeys(sUsername);
         chrome.findElement(By.id("Password")).sendKeys(sPassword + Keys.ENTER);
 
         try {
-            Assert.assertTrue(chrome.findElement(By.cssSelector(".logout")).isEnabled());
             chrome.navigate().to("https://jdi-framework.github.io/tests/page1.htm");
             Assert.assertEquals(chrome.getTitle(), "Contact Form");
-            System.out.println("Successfully submitted");
+            if (bool == "Contact Form".equals(chrome.getTitle())) {
+                System.out.println("Successfully submitted");
+            }
         }
         catch (AssertionError e) {
             System.out.println("Login failed, invalid username or password");
-        }
+        }*/
+
+        Login login = new Login(chrome, ".profile-photo");
+        login.clickToStart();
+        login.typeData("Login", sUsername, "Password", sPassword);
+        login.submit("button.btn-login");
+        login.loginCheck(bool);
     }
 
     @Test(priority = 2)

@@ -34,6 +34,11 @@
       <artifactId>selenium-chrome-driver</artifactId>
       <version>3.0.0-beta4</version> <!--only selenium 3 does work with newest browser-->
     </dependency>
+      <dependency>
+          <groupId>org.testng</groupId>
+          <artifactId>testng</artifactId>
+          <version>6.9.13.6</version>
+      </dependency>
   </dependencies>
 
   <build>
